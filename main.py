@@ -199,8 +199,9 @@ def Terminal_edit():
     if transcriptionFile != "":
       # Create a model instance for modification
       geminiInput=str(
-        f"Follow these instructions to the transcription{UserInput}"
+        f"Follow these instructions to the transcription with an ideally brief response:{UserInput}"
         f"the Transcription is:{transcriptionFile}"
+        f"Make sure to not include the original transcription unless instructed to do so."
       )
       response = client.models.generate_content(
       model="gemini-2.5-flash", contents=geminiInput
@@ -235,17 +236,17 @@ def tkedit():
 
 root = tk.Tk()
 root.title("NADCA")
-
-SecondsRequired_label=tk.Label(root,text="Please put how many seconds you want to record as a number below!",width=70)
+root.configure(bg="lightblue")
+SecondsRequired_label=tk.Label(root,text="Please put how many seconds you want to record as a number below!",width=55, font="bold")
 SecondsRequired_label.pack(pady=10)
 
 entry_widget_record=tk.Entry(
   root,width=70
-)
+) 
 entry_widget_record.pack(pady=10)
 
 Record_button= tk.Button(
-  root,text="Click to record!",command=tkRecord, width=50,font=("bold"))
+  root,text="Click to record!",command=tkRecord, width=50,font="bold")
 Record_button.pack(pady=10)
 
 IsRecording_label=tk.Label(root, width=70, text="")
@@ -255,7 +256,7 @@ Transcribe_button= tk.Button(
   root,text="Click to transcribe an audio file!",command=tkTranscribe,width=50,font=("bold"))
 Transcribe_button.pack(pady=10)
 
-Transcription_label= tk.Label(root,text="",width=70)
+Transcription_label= tk.Label(root,text="",width=70, wraplength=500)
 Transcription_label.pack(pady=10)
 
 edit_button=tk.Button(
@@ -267,7 +268,7 @@ edit_entry=tk.Entry(
 )
 edit_entry.pack(pady=10)
 
-editedTranscription_label=tk.Label(root,text="",width=100)
+editedTranscription_label=tk.Label(root,text="",width=100, wraplength=500)
 editedTranscription_label.pack(pady=10)
 
 root.mainloop()
