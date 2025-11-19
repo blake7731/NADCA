@@ -231,7 +231,7 @@ def tkedit():
   else:
     editedTranscription_label.config(text="please transcribe an audio file first")
 #ask()
-
+a
 
 
 root = tk.Tk()
